@@ -1,0 +1,14 @@
+[Unit]
+Description=Foreman jobs daemon
+Documentation=https://github.com/iNecas/foreman-tasks
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+WorkingDirectory=/usr/share/foreman
+ExecStart=/usr/bin/foreman-jobs start 
+ExecStop=/usr/bin/foreman-jobs stop
+EnvironmentFile=-/etc/sysconfig/foreman-jobs
+
+[Install]
+WantedBy=multi-user.target
